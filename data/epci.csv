@@ -1,0 +1,4 @@
+{
+  "error_code": "ODSQLSyntaxError",
+  "message": "ODSQL syntax exception: unexpected , at position 83 in (agregat = \"Encours de dette\" or agregat = \"Produit des cessions d'immobilisations\",agregat = \"Recettes de fonctionnement\", agregat = \"Epargne de gestion\", agregat = \"Epargne brute\", agregat = \"Epargne nette\", agregat = \"Remboursements d'emprunts hors GAD\") and ptot >= 80000 and YEAR(exer) = 2023. Clause(s) containing the error(s): where."
+}
