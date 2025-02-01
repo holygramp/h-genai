@@ -72,9 +72,7 @@ def getInseeData(ville):
     insee_code, epci_code = getInseeCode(ville)
     if insee_code == None:
         return None
-    # if driver == None:
-    #     driver = setup_selenium(False)
-    # res = fetch_html_selenium("https://www.insee.fr/fr/statistiques/1405599?geo=EPCI-"+epci_code+"+COM-"+insee_code, attended_mode, driver)
+    
     res = requests.get(f"https://www.insee.fr/fr/statistiques/1405599?geo=EPCI-{epci_code}+COM-{insee_code}")
     soup = BeautifulSoup(res.content, 'html.parser', from_encoding='utf-8')
     # Find all tr elements

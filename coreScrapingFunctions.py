@@ -17,7 +17,7 @@ import subprocess
 from langchain.tools import DuckDuckGoSearchRun
 import time
 from openai import OpenAI
-from config import USER_AGENTS,PRICING,HEADLESS_OPTIONS
+from config import USER_AGENTS,HEADLESS_OPTIONS
 import requests
 
 def setup_selenium(attended_mode=False):

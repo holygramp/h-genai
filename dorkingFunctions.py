@@ -84,6 +84,7 @@ def getFirstURL(query, query2, attended_mode=False, driver=None, n_tries=0):
         return getFirstURL(query2, attended_mode, driver, n_tries+1)
     elif "Aucun résultat" in res and n_tries >= 1:
         print("Pas de BP trouvé après 2 tentatives")
+        driver.quit()
         return None
     soup = BeautifulSoup(res, 'html.parser')
     a_tags = soup.find_all("a", jsname="UWckNb")
@@ -91,6 +92,7 @@ def getFirstURL(query, query2, attended_mode=False, driver=None, n_tries=0):
         if a_tag.has_attr('href') and a_tag.get("href") is not None:
             href = a_tag.get("href")
             if href and href.endswith(".pdf"):
+                driver.quit()
                 return(a_tag.get("href"))
 
 
