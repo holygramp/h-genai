@@ -1,0 +1,245 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "Supporting resources for Loan servicing Agent powered by Agents and Knowledge base for Amazon Bedrock"
+
+Resources:
+  PropertyListingTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: !Sub ${AWS::StackName}-Property-Listing
+      AttributeDefinitions:
+        - AttributeName: mls_id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: mls_id
+          KeyType: HASH
+      ProvisionedThroughput:
+        ReadCapacityUnits: '3'
+        WriteCapacityUnits: '3'
+      SSESpecification:
+        SSEEnabled: True
+
+  LoanTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: !Sub ${AWS::StackName}-Loan
+      AttributeDefinitions:
+        - AttributeName: loan_id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: loan_id
+          KeyType: HASH
+      ProvisionedThroughput:
+        ReadCapacityUnits: '3'
+        WriteCapacityUnits: '3'
+      SSESpecification:
+        SSEEnabled: True
+
+  AgentActionGroupLambdaRole:
+    Type: 'AWS::IAM::Role'
+    Properties:
+      RoleName: !Sub ${AWS::StackName}-AgentActionGroupLambdaRole
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: 'sts:AssumeRole'
+            Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+        Version: 2012-10-17
+      ManagedPolicyArns:
+        - !Join 
+          - ''
+          - - 'arn:'
+            - !Ref 'AWS::Partition'
+            - ':iam::aws:policy/service-role/AWSLambdaBasicExecutionRole'
+
+  AgentActionGroupLambdaRoleDefaultPolicy:
+    Type: 'AWS::IAM::Policy'
+    Properties:
+      PolicyName: !Sub ${AWS::StackName}-AgentActionGroupLambdaRoleDefaultPolicy
+      PolicyDocument:
+        Statement:
+          - Action:
+              - dynamodb:BatchGetItem
+              - dynamodb:BatchWriteItem
+              - dynamodb:ConditionCheckItem
+              - dynamodb:DeleteItem
+              - dynamodb:DescribeTable
+              - dynamodb:GetItem
+              - dynamodb:GetRecords
+              - dynamodb:GetShardIterator
+              - dynamodb:PutItem
+              - dynamodb:Query
+              - dynamodb:Scan
+              - dynamodb:UpdateItem
+              - lambda:Get*
+              - lambda:InvokeFunction
+              - bedrock:InvokeModel
+              - s3:GetObject
+              - s3:PutObject
+            Effect: Allow
+            Resource: '*'        
+        Version: 2012-10-17
+      Roles:
+        - !Ref AgentActionGroupLambdaRole
+
+  BedrockAgentLoanCalculatorFunctionPermission:
+    Type: 'AWS::Lambda::Permission'
+    Properties:
+      Action: 'lambda:InvokeFunction'
+      FunctionName: !Ref AgentLoanCalculatorFunction
+      Principal: 'bedrock.amazonaws.com'
+  
+  BedrockMLSLoopupFunctionPermission:
+    Type: 'AWS::Lambda::Permission'
+    Properties:
+      Action: 'lambda:InvokeFunction'
+      FunctionName: !Ref MLSLookupFunction
+      Principal: 'bedrock.amazonaws.com'
+
+  DataLoaderFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      Description: Lambda function to initially load the claims catalog.
+      FunctionName: !Sub ${AWS::StackName}-BedrockDataLoader
+      Code: 
+        S3Bucket: ws-assets-prod-iad-r-pdx-f3b3f9f1a7d6a3d0
+        S3Key: 1e5b6626-f63c-41d7-adcb-4a3cdfd279ac/data-loader/loader_deployment_package.zip
+      Runtime: nodejs16.x
+      MemorySize: 256
+      Timeout: 20
+      Handler: index.lambda_handler
+      Role: !GetAtt AgentActionGroupLambdaRole.Arn
+      Environment:
+        Variables:
+          PROPERTY_TABLE_NAME: !Ref PropertyListingTable
+          LOAN_TABLE_NAME: !Ref LoanTable
+
+  LoadData:
+    Type: Custom::LoadDynamoDB
+    Properties:
+      ServiceToken: !GetAtt DataLoaderFunction.Arn
+  
+  MLSLookupFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      Description: Bedrock  agent MLS Lookup function
+      FunctionName: !Sub ${AWS::StackName}-MLSLookupFunction
+      Code:
+        S3Bucket: ws-assets-prod-iad-r-pdx-f3b3f9f1a7d6a3d0
+        S3Key: 1e5b6626-f63c-41d7-adcb-4a3cdfd279ac/agent-actions/mls_lookup.zip
+      Runtime: python3.12
+      MemorySize: 512
+      Timeout: 30
+      Handler: mls_lookup.lambda_handler
+      Role: !GetAtt AgentActionGroupLambdaRole.Arn
+      Architectures:
+        - arm64
+      Environment:
+        Variables:
+          PROPERTY_TABLE_NAME: !Ref PropertyListingTable
+  
+  AgentLoanCalculatorFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      Description: Bedrock Insurance agent Loan Affordability Calculator"
+      FunctionName: !Sub ${AWS::StackName}-AgentLoanCalculatorFunction
+      Code:
+        S3Bucket: ws-assets-prod-iad-r-pdx-f3b3f9f1a7d6a3d0
+        S3Key: 1e5b6626-f63c-41d7-adcb-4a3cdfd279ac/agent-actions/loan_calculator.zip
+      Runtime: python3.12
+      MemorySize: 512
+      Timeout: 30
+      Handler: loan_calculator.lambda_handler
+      Role: !GetAtt AgentActionGroupLambdaRole.Arn
+      Architectures:
+        - arm64
+
+  PromptFlowRole:
+    Type: 'AWS::IAM::Role'
+    Properties:
+      RoleName: !Sub ${AWS::StackName}-PromptFlowRole
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: 'sts:AssumeRole'
+            Effect: Allow
+            Principal:
+              Service: bedrock.amazonaws.com
+            Condition:
+              StringEquals:
+                aws:SourceAccount: !Ref AWS::AccountId
+              ArnLike:
+                AWS:SourceArn: !Join
+                  - ':'
+                  - - 'arn'
+                    - !Ref AWS::Partition
+                    - 'bedrock'
+                    - !Ref AWS::Region
+                    - !Ref AWS::AccountId
+                    - 'flow/*'
+        Version: 2012-10-17
+  
+  PromptFlowRolePolicy:
+    Type: 'AWS::IAM::Policy'
+    Properties:
+      PolicyName: !Sub ${AWS::StackName}-PromptFlowRolePolicy
+      PolicyDocument:
+        Statement:
+          - Action:
+              - bedrock:InvokeModel
+              - bedrock:GetPrompt
+              - bedrock:Retrieve
+              - bedrock:RetrieveAndGenerate
+              - bedrock:InvokeAgent 
+            Effect: Allow
+            Resource: '*'        
+        Version: 2012-10-17
+      Roles:
+        - !Ref PromptFlowRole
+
+  LoanCalculatorLambdaRole:
+    Type: 'AWS::IAM::Role'
+    Properties:
+      RoleName: !Sub ${AWS::StackName}-LoanCalculatorLambdaRole
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: 'sts:AssumeRole'
+            Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+        Version: 2012-10-17
+      ManagedPolicyArns:
+        - !Join 
+          - ''
+          - - 'arn:'
+            - !Ref 'AWS::Partition'
+            - ':iam::aws:policy/service-role/AWSLambdaBasicExecutionRole'
+
+  LoanCalculatorFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      Description: "Loan Affordability Calculator"
+      FunctionName: !Sub ${AWS::StackName}-LoanCalculatorFunction
+      Code:
+        S3Bucket: ws-assets-prod-iad-r-pdx-f3b3f9f1a7d6a3d0
+        S3Key: 1e5b6626-f63c-41d7-adcb-4a3cdfd279ac/loan_calculator.zip
+      Runtime: python3.12
+      MemorySize: 512
+      Timeout: 30
+      Handler: loan_calculator.lambda_handler
+      Role: !GetAtt LoanCalculatorLambdaRole.Arn
+      Architectures:
+        - arm64
+  
+  LoanCalculatorFunctionPermission:
+    Type: 'AWS::Lambda::Permission'
+    Properties:
+      Action: 'lambda:InvokeFunction'
+      FunctionName: !Ref LoanCalculatorFunction
+      Principal: 'bedrock.amazonaws.com'
+
+  KnowledgeBaseBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub "${AWS::StackName}-kb-bucket-${AWS::AccountId}"
+      VersioningConfiguration:
+        Status: Enabled

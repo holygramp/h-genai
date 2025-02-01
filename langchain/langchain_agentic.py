@@ -48,14 +48,14 @@ def create_agent(llm, tools, system_message: str):
     prompt = ChatPromptTemplate.from_messages(
         [
             (
-                "system",
-                "You are a helpful AI assistant, collaborating with other assistants. "
-                "Use the provided tools to progress towards answering the question. "
-                "If you are unable to fully answer, that's OK, another assistant with different tools "
-                "will help where you left off. Execute what you can to make progress. "
-                "If you or any of the other assistants have the final answer or deliverable, "
-                "prefix your response with FINAL ANSWER so the team knows to stop. "
-                "You have access to the following tools: {tool_names}.\n{system_message}",
+                "système",
+                "Vous êtes un assistant IA utile, qui collabore avec d'autres assistants."
+                "Utilisez les outils fournis pour progresser vers la réponse à la question."
+                "Si vous n'êtes pas en mesure de répondre complètement, ce n'est pas grave, un autre assistant doté d'outils différents"
+                "vous aidera là où vous vous êtes arrêté. Exécutez ce que vous pouvez pour progresser."
+                "Si vous ou l'un des autres assistants avez la réponse finale ou le produit livrable,"
+                "préfixez votre réponse par FINAL ANSWER pour que l'équipe sache qu'elle doit s'arrêter."
+                "Vous avez accès aux outils suivants :{tool_names}.\n{system_message}",
             ),
             MessagesPlaceholder(variable_name="messages"),
         ]
@@ -83,10 +83,10 @@ def setup_workflow(llm, tools):
     """Set up and return the workflow graph."""
     # Create agents
     research_agent = create_agent(
-        llm, tools, "You should provide accurate data for the chart_generator to use."
+        llm, tools, "Tu dois fournir une valeur numérique représentant la dette de la ville de Dijon pour l'année 2023"
     )
     chart_agent = create_agent(
-        llm, tools, "Any charts you display will be visible by the user."
+        llm, tools, "Tu dois vérifier que la valeur en entrée est une valeur numérique"
     )
 
     # Create nodes
@@ -145,7 +145,7 @@ def main():
     # )
 
     llm = ChatBedrock( #create a Bedrock llm client
-        model_id="cohere.command-text-v14", #set the foundation model
+        model_id="mistral.mistral-large-2407-v1:0", #set the foundation model
         model_kwargs={
             "max_tokens": 512,
             "temperature": 0,
@@ -153,7 +153,7 @@ def main():
             "k": 0,
             "stop_sequences": [],
             "return_likelihoods": "NONE"
-        }
+        },
         region_name="us-west-2",
 
     )
@@ -169,9 +169,7 @@ def main():
         {
             "messages": [
                 HumanMessage(
-                    content="Fetch the UK's GDP over the past 5 years, "
-                    "then create a bar graph for me to see. "
-                    "Once you code it up, save the bar graph as a png"
+                    content="Recherche la dette de la ville de Dijon pour l'année 2023"
                 )
             ],
         },
