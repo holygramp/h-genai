@@ -182,6 +182,7 @@ def getBanaticData(ville, driver=None, attended_mode=False):
         titre_element = event_tag.find_next("div", class_="TuileEvenement_evenement__titre__gCUbq")
         if titre_element and titre_element.get_text().startswith(("Création", "Adhésion")):
             result_frise[event_tag.find("p").get_text()] = event_tag.find("div", class_="TuileEvenement_evenement__titre__gCUbq").get_text()
+    driver.quit()
     return president, result_facultatives, result_obligatoires,"".join([item.replace("\u202f", "") for item in dotation]) , result_frise
     
 print(getBanaticData("Clermont-Ferrand"))
