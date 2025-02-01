@@ -17,8 +17,9 @@ import subprocess
 from langchain.tools import DuckDuckGoSearchRun
 import time
 from openai import OpenAI
-from config import USER_AGENTS,PRICING,HEADLESS_OPTIONS
+from config import USER_AGENTS,HEADLESS_OPTIONS
 import requests
+import pandas as pd
 
 def getInseeCode(ville):
     """
@@ -34,7 +35,7 @@ def getInseeCode(ville):
     else:
         print("Erreur dans le nom de la ville ou ailleurs")
         return(None)
-    
+
 def getInseeData(ville):
     """
     Retrieves :
@@ -103,14 +104,14 @@ def getInseeData(ville):
                 city_numbers["population"] = td_tags[1].text.strip()
 
         elif th and th.text.strip().startswith("Densité"):
-            data_types["densité"] = th.text.strip()
+            data_types["densite"] = th.text.strip()
 
             td_tags = tr.find_all('td', limit=2)
             
             # If we found 2 td elements, add their values to our lists
             if len(td_tags) == 2:
-                epci_numbers["densité"] = td_tags[0].text.strip()
-                city_numbers["densité"] = td_tags[1].text.strip()
+                epci_numbers["densite"] = td_tags[0].text.strip()
+                city_numbers["densite"] = td_tags[1].text.strip()
 
         elif th and th.text.strip().startswith("Superficie"):
             data_types["superficie"] = th.text.strip()
@@ -222,6 +223,6 @@ def getInseeData(ville):
         "EPCI": city_numbers,
         "CITY": epci_numbers
     }
-    return(data_types, combined_json)
+    return data_types, combined_json
 
-# print(getInseeData("Dijon"))
+# print(getInseeData("Dijon")[1]["CITY"])
