@@ -12,8 +12,8 @@
       "encours_budget_principal_moyen": 1100,
       "capacite_desendettement": 3.4,
       "capacite_desendettement_moyen": 5.7,
-      "taux_endettement": 51,
-      "taux_endettement_moyen": 74,
+      "taux_endettement": 51.0,
+      "taux_endettement_moyen": 74.0,
       "duree_apparente_dette": 10.1,
       "duree_apparente_dette_moyen": 10.3,
       "budget_par_habitant": 679.0,
@@ -53,8 +53,8 @@
       "Energies renouvelables": {
         "Energies solaires": {
           "déploiement de panneaux photovoltaïques sur les toits des bâtiments publics": {
-            "type": "projet voté",
-            "echeance": "2025",
+            "type": "projet",
+            "echeance": 2025,
             "montant": 2000000,
             "competence": 1
           }
