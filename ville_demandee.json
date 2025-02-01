@@ -1,0 +1,77 @@
+{
+    "id": {
+      "insee": 21000,
+      "year": 2025
+    },
+    "inter": {
+      "num_epci": 242100410,
+      "nom_epci": "Dijon Métropole"
+    },
+    "indicateurs_financiers": {
+      "encours_budget_principal": 110000000,
+      "encours_budget_principal_moyen": 1100,
+      "capacite_desendettement": 3.4,
+      "capacite_desendettement_moyen": 5.7,
+      "taux_endettement": 51,
+      "taux_endettement_moyen": 74,
+      "duree_apparente_dette": 10.1,
+      "duree_apparente_dette_moyen": 10.3,
+      "budget_par_habitant": 679.0,
+      "tableau_bilan": "./tableau_bilan.png",
+      "epargne_gestion": 221,
+      "epargne_gestion_moyen": 215,
+      "epargne_brute": 198,
+      "epargne_brute_moyen": 193,
+      "epargne_nette": 131,
+      "epargne_nette_moyen": 86,
+      "recette_gestion": 65,
+      "produit_cessions_immobilisations": 138,
+      "recette_fonctionnement": 204
+    },
+    "presentations_generales": {
+      "population": 159346,
+      "superficie": 40.4,
+      "densite": 3944,
+      "frise_chronologique": [
+        "1966: Création du Syndicat intercommunal des services de l’agglomération dijonnaise (SISAD) avec 9 communes",
+        "1976: Création du District de Dijon avec 5 communes puis 13 en 1984",
+        "1999: Création de la Communauté de l’agglomération dijonnaise (COMADI) avec 16 communes, puis 21 en 2004",
+        "2015: Création de la Communauté urbaine du Grand Dijon",
+        "2017: Création de Dijon Métropole avec 23 communes"
+      ],
+      "part-resid-princ": 90.4, 
+      "part-resid-second": 2.9, 
+      "part-log-vac": 6.7,
+      "chomage": 12.6, 
+      "agriculture": 0.7,
+      "industrie": 5.5,
+      "construction": 9.0,
+      "commerce": 70.9,
+      "administration": 13.9
+    },
+    "projets_verts": {
+      "Energies renouvelables": {
+        "Energies solaires": {
+          "déploiement de panneaux photovoltaïques sur les toits des bâtiments publics": {
+            "type": "projet voté",
+            "echeance": "2025",
+            "montant": 2000000,
+            "competence": 1
+          }
+        }
+      }
+    },
+    "projets_sociaux": {
+      "Enseignement et formation professionnelle": {
+        "Financement des établissements d’enseignement": {
+          "grand plan pluriannuel de rénovation des 76 écoles dijonnaises": {
+            "type": "tendance",
+            "echeance": "2034",
+            "montant": 75000000,
+            "competence": 1
+          }
+        }
+      }
+    },
+    "interlocuteurs": "CV de Nathalie Koenders"
+  }  
