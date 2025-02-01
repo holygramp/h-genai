@@ -17,7 +17,7 @@ import subprocess
 from langchain.tools import DuckDuckGoSearchRun
 import time
 from openai import OpenAI
-from config import USER_AGENTS,PRICING,HEADLESS_OPTIONS
+from config import USER_AGENTS,HEADLESS_OPTIONS
 import requests
 from coreScrapingFunctions import setup_selenium
 from getInseeData import getInseeCode
@@ -133,12 +133,20 @@ def getBanaticData(ville, driver=None, attended_mode=False):
         driver = setup_selenium(False)
     driver.get("https://www.banatic.interieur.gouv.fr/intercommunalite/"+epci_code)
     time.sleep(5)
+    # Find elements with class 'fr-accordion__btn'
     buttons = driver.find_elements(By.CLASS_NAME, "fr-accordion__btn")
 
-    # Itérer et cliquer sur chaque bouton
+    # For multiple classes, use CSS_SELECTOR instead of CLASS_NAME
+    button_eye = driver.find_element(By.CSS_SELECTOR, ".fr-btn.fr-btn--tertiary-no-outline.fr-icon-eye-line.fr-btn--icon-right.SectionEvenements_bouton_afficher_tous__PYy64")
+
+    # Click each accordion button
     for button in buttons:
         button.click()
-    time.sleep(2)
+        time.sleep(1)  # Add small delay between clicks
+
+    time.sleep(5)
+    button_eye.click()
+    time.sleep(5)
     # Récupérer l'HTML complet de la page après avoir cliqué sur les boutons
     page_html = driver.page_source
     soup = BeautifulSoup(page_html, 'html.parser')
@@ -185,4 +193,4 @@ def getBanaticData(ville, driver=None, attended_mode=False):
     driver.quit()
     return president, result_facultatives, result_obligatoires,"".join([item.replace("\u202f", "") for item in dotation]) , result_frise
     
-print(getBanaticData("Clermont-Ferrand"))
+# print(getBanaticData("Clermont-Ferrand"))

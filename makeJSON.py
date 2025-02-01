@@ -1,13 +1,22 @@
 from getInseeData import getInseeData
 from getProfilesCV import getMaires
+from getBanaticData import getBanaticData
 import json
 
 def presentationGeneralesVille(nom_ville):
-    presentations_generales = getInseeData(nom_ville)[1]["CITY"]
+    data = getInseeData(nom_ville)
+    presentations_generales = data[1]["CITY"]
+    frise = getBanaticData(nom_ville)[-1]
+    presentations_generales["frise_chronologique"] = frise
     return(presentations_generales)
     
 def presentationGeneralesEPCI(nom_ville):
     presentations_generales = getInseeData(nom_ville)[1]["EPCI"]
+    data = getBanaticData(nom_ville)
+    presentations_generales["frise_chronologique"] = data[-1]
+    presentations_generales["dotation"] = data[3]
+    presentations_generales["competences_facultatives"] = data[1]
+    presentations_generales["competences_obligatoires"] = data[2]
     return(presentations_generales)
 
 def interlocuteursVilleEtEPCI(poste, ville):
@@ -44,4 +53,3 @@ def interlocuteursVilleEtEPCI(poste, ville):
 # print(presentationGeneralesVille("Dijon"))
 # print(interlocuteursVilleEtEPCI("maire", "dijon"))
 # print(presentationGeneralesEPCI("Dijon"))
-
