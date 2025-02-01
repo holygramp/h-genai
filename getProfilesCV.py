@@ -17,7 +17,7 @@ import subprocess
 from langchain.tools import DuckDuckGoSearchRun
 import time
 from openai import OpenAI
-from config import USER_AGENTS,PRICING,HEADLESS_OPTIONS
+from config import USER_AGENTS,HEADLESS_OPTIONS
 import requests
 from coreScrapingFunctions import setup_selenium, fetch_html_selenium
 
@@ -34,7 +34,7 @@ class Education(BaseModel):
     duration: str
 
 class Educations(BaseModel):
-    different_schools: List[Experience]
+    different_schools: List[Education]
 
 class Post(BaseModel):
     title: str
@@ -153,6 +153,8 @@ def getMaires(poste, ville, attended_mode=False, driver=None):
         #     response_format=Posts,
         # )
         driver.quit()
-        return(completion_experience.choices[0].message.parsed, 
+        return name, completion_experience.choices[0].message.parsed, completion_education.choices[0].message.parsed
             #    completion_activity.choices[0].message.parsed,
-               completion_education.choices[0].message.parsed)
+               
+    
+# print(getMaires("Maire", "Dijon"))
