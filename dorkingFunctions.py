@@ -17,7 +17,7 @@ import subprocess
 from langchain.tools import DuckDuckGoSearchRun
 import time
 from openai import OpenAI
-from config import USER_AGENTS,PRICING,HEADLESS_OPTIONS
+from config import USER_AGENTS,HEADLESS_OPTIONS
 import requests
 from coreScrapingFunctions import setup_selenium, fetch_html_selenium
 import pandas as pd
@@ -60,7 +60,7 @@ def getAllDOB(path_to_csv="h-genai/villes_sites.csv"):
         ville = row['Ville']
         query = f'https://www.google.com/search?q="débat d\'orientation budgétaire" after:2024-01-01 inurl:{ville} filetype:pdf'
         query_second_chance = f'https://www.google.com/search?q="débat d\'orientation budgétaire" after:2023-01-01 inurl:{ville} filetype:pdf'
-        PDFs.append(getFirstURL(query, query_second_chance))
+        PDFs.append(getFirstURL(query, query_second_chance, False, None, 1))
     return PDFs
 
 def getFirstURL(query, query2, attended_mode=False, driver=None, n_tries=0):
@@ -79,7 +79,7 @@ def getFirstURL(query, query2, attended_mode=False, driver=None, n_tries=0):
         print("Captcha error, remplissez le et appuyez sur Espace")
         keyboard.wait("space")
         print("Reprise du scrapping")
-        return getFirstURL(query, attended_mode, driver)
+        return getFirstURL(query, attended_mode, driver, n_tries)
     elif "Aucun résultat" in res and n_tries < 1:
         return getFirstURL(query2, attended_mode, driver, n_tries+1)
     elif "Aucun résultat" in res and n_tries >= 1:
@@ -97,4 +97,4 @@ def getFirstURL(query, query2, attended_mode=False, driver=None, n_tries=0):
 
 
 # print(getAllBudgetsPrimitifs()[0])
-print(getAllDOB())
+# print(getAllDOB())

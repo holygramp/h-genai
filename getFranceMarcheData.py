@@ -52,8 +52,10 @@ def getAllAOs(nom_dep, path_to_csv='h-genai/departements-france.csv',  driver=No
             link = ao.find_previous("a", class_="offre").get("href")
             AO_links.append(link)
             AO_titles.append(title)
+            driver.quit()
+            return AO_titles, AO_links
         i+=1
     driver.quit()
     return AO_titles, AO_links
       
-print(getAllAOs("Ain"))
+# print(getAllAOs("Ain"))

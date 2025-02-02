@@ -8,6 +8,7 @@ def presentationGeneralesVille(nom_ville):
     presentations_generales = data[1]["CITY"]
     frise = getBanaticData(nom_ville)[-1]
     presentations_generales["frise_chronologique"] = frise
+    presentations_generales["data_description"] = data[0]
     return(presentations_generales)
     
 def presentationGeneralesEPCI(nom_ville):
@@ -50,6 +51,6 @@ def interlocuteursVilleEtEPCI(poste, ville):
     cleaned_output = json_str.replace('{', '').replace('}', '').replace('[', '').replace(']', '').replace(',', '')
     return cleaned_output
 
-# print(presentationGeneralesVille("Dijon"))
+print(presentationGeneralesVille("Dijon"))
 # print(interlocuteursVilleEtEPCI("maire", "dijon"))
 # print(presentationGeneralesEPCI("Dijon"))
