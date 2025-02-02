@@ -36,7 +36,7 @@
         "Bordeaux_BP": "https://www.bordeaux-metropole.fr/sites/MET-BXMETRO-DRUPAL/files/2024-05/BP2024_tome%202_%20Budgets%20Annexes.pdf"
     },
     "Lille": {
-        "Lille_DOB": "https://pepite-depot.univ-lille.fr/LIBRE/EDSESAM/2022/2022ULILA014.pdf",
+        "Lille_DOB": null,
         "Lille_BP": "https://www.scot-lille-metropole.org/wp-content/uploads/sites/2/2022/07/09-2021-Participation-des-membres-et-budget-primitif-2022.pdf"
     },
     "Rennes": {
@@ -52,7 +52,7 @@
         "Saint-Étienne_BP": null
     },
     "Le Havre": {
-        "Le Havre_DOB": "https://www.verrieres-le-buisson.fr/wp-content/uploads/2024/02/2024-03_vv-249_bd-1.pdf",
+        "Le Havre_DOB": null,
         "Le Havre_BP": "https://www.lehavreseinemetropole.fr/sites/default/files/media/downloads/rapport-annuel-dactivite-2022-le-havre-seine-metropole.pdf"
     },
     "Toulon": {
@@ -161,7 +161,7 @@
     },
     "Nanterre": {
         "Nanterre_DOB": "https://www.nanterre.fr/fileadmin/mediatheque/Vie_citoyenne/Vie_municipale/budget_et_fiscalite/DEL2024-25-_Annexe_Rapport_BP_2024_mis_en_forme_2.pdf",
-        "Nanterre_BP": "https://www.nanterre.fr/fileadmin/mediatheque/Vie_citoyenne/Vie_municipale/budget_et_fiscalite/DEL2024-25-_Annexe_Rapport_BP_2024_mis_en_forme_2.pdf"
+        "Nanterre_BP": null
     },
     "Vitry-sur-Seine": {
         "Vitry-sur-Seine_DOB": null,
@@ -212,11 +212,11 @@
         "Versailles_BP": "https://www.versailles.fr/fileadmin/www.versailles.fr/MEDIA/Mairie/Budget/2025/pdf/Le_rapport_du_budget_primitif_2025.pdf"
     },
     "Le Tampon": {
-        "Le Tampon_DOB": "https://www.castelnau-le-lez.fr/app/uploads/2024/10/5-ROB-tampon.pdf",
+        "Le Tampon_DOB": null,
         "Le Tampon_BP": "https://delib.mairie-tampon.fr/download/2023-12-16%20-%2002%20-%20Autorisation%20d'engager,%20liquider%20et%20mandater%20les%20d%C3%A9penses%20d'investissement%20avant%20le%20vote%20du%20budget%20primitif%202024/2%20-%20autorisation%20engager%20depenses%20investissement-tampon.pdf"
     },
     "Courbevoie": {
-        "Courbevoie_DOB": "https://www.ville-courbevoie.fr/Statics/Votre_mairie/Conseil_municipal/Budget/budget_2024/Rapport_BP_2024_VILLE_CANTINE.pdf",
+        "Courbevoie_DOB": null,
         "Courbevoie_BP": "https://www.ville-courbevoie.fr/Statics/Votre_mairie/Conseil_municipal/Budget/budget_2024/Rapport_BP_2024_VILLE_CANTINE.pdf"
     },
     "Rueil-Malmaison": {
