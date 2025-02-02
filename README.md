@@ -54,3 +54,18 @@ streamlit run user_interface.py
 - L'application utilise villes_sites.csv, departements-france.csv, logo_base64.txt, explication_projet.jpg
 
 Assurez-vous que ces fichiers soient présents dans le répertoire ./ avec les bonnes données pour que la sélection des villes fonctionne.
+
+## Backend
+### Récupération des données
+La partie récupération des données est assurée par un grand nombre de scripts de webscraping, en la combinant souvent avec du Google Dorking afin de préciser nos recherches au maximum et diminuer la variabilité des données récoltées. La plupart du temps nous n'utilisons pas d'IA générative mis à part pour un cas exceptionnel où Mistral a permis de structurer nos données récupérées sur LinkedIn.
+
+#### Utilisation
+La récupération des données est soumise à de nombreux contrôles et contraintes sur le web, obligeant ces scripts à être bien souvent assistés par un humain en arrière plan pour les besoins de résolution de Captcha, de connexion...
+
+#### Pour la suite
+Ces scripts avaient pour seul but de prouver la faisabilité de notre approche dans le cadre de ce hackathon, oubliant parfois certains bons principes de code. Dans une optique de scalabilité, nous aimerions plus tard interragir avec les APIs payantes que nous avons pour le moment évité par soucis de moyens. Toutes les fonctions sont normalement un minimum documentées, afin d'en faciliter la reprise.
+
+### Traitement des données
+La partie traitement des données repose principalement sur la structuration de toutes les données récupérées dans nos fiches en passant également par l'utilisation de Claude. Nous utilisons un système RAG sur une base de données composée de documents soigneusement récupérés par nos scrapers, ce qui nous permet de remplir les champs les plus complexes de notre fiche client.
+
+
