@@ -12,6 +12,8 @@ from streamlit_echarts import st_echarts
 import plotly.express as px
 import altair as alt
 import requests
+from docx import Document
+from io import BytesIO
 
 
 # Main function
@@ -67,7 +69,7 @@ def main():
             # Affichage du spinner et attente de la création du fichier
             with st.spinner("⏳"):
                 start_time = time.time()  # Début du compteur
-                lambda_url = "https://caolsvkubnf7gcdpcpa5xktz5y0psruh.lambda-url.us-west-2.on.aws/"
+                lambda_url = "https://caolsvkubnf7gcdpcpa5xktz5y0psruh.lambda-url.us-west-2.on.aws/city"
                 # Envoie des informations à la Lambda
                 # Fonction pour enregistrer la réponse dans un fichier JSON
                 def enregistrer_reponse_json(response_data, filename="reponse_lambda.json"):
@@ -82,10 +84,11 @@ def main():
                 def envoyer_a_lambda(data):
                     headers = {'Content-Type': 'application/json'}
                     try:
-                        response = requests.get(lambda_url, headers=headers, data=json.dumps(data))
+                        response = requests.get(lambda_url, headers=headers, data=data)
                         # Vérifie si la requête a réussi
                         if response.status_code == 200:
                             response_data = response.json()  # On récupère la réponse au format JSON
+                            print('response_data')
                             enregistrer_reponse_json(response_data, filename=f"{selected_city}.json")
                         else:
                             st.error(f"Erreur: {response.status_code}, {response.text}")
@@ -477,7 +480,7 @@ def main():
                # 4. INTERLOCUTEURS
                 st.markdown("<h3 style='color:"+verdigris+";'>4. Interlocuteurs</h3>", unsafe_allow_html=True)
 
-
+                st.markdown(f'{data["interlocuteurs"]}')
 
 
 
@@ -522,7 +525,7 @@ def main():
                 st.markdown("<h4 style='color:"+gray+";'>5.2. Indicateurs de risques financiers</h4>", unsafe_allow_html=True)
 
                 st.markdown(
-                    f"<p style='color:{gray};'><a href=' https://www.data.gouv.fr/fr/datasets/comptes-des-communes-2016-2023/#/resources/7701d6a6-97e4-4938-9c38-a852cb14cfba' target='_blank' style='color:{gray};'> 🔗 Source data.gouv.fr</a></p>", 
+                    f"<p style='color:{gray};'><a href=' https://www.data.gouv.fr/fr/datasets/comptes-des-communes-2016-2023/#/resources/7701d6a6-97e4-4938-9c38-a852cb14cfba' target='_blank' style='color:{gray};'> 🔗 Source</a></p>", 
                     unsafe_allow_html=True
                 )
                 # Tableau
@@ -535,26 +538,12 @@ def main():
                 # Afficher le tableau 
                 st.dataframe(df, hide_index=True) 
 
+                st.write("")
+                st.write("")
+                st.write("")
+                st.write("")
+                st.write("")
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-    st.write("")
-    st.write("")
-    st.write("")
-    st.write("")
-    st.write("")
-    st.write("")
 
 # Run the application
 if __name__ == "__main__":
