@@ -8,7 +8,7 @@
       "nom_epci": "Dijon Métropole"
     },
     "indicateurs_financiers": {
-      "encours_budget_principal": 110000000,
+      "encours_budget_principal": 11,
       "encours_budget_principal_moyen": 1100,
       "capacite_desendettement": 3.4,
       "capacite_desendettement_moyen": 5.7,
@@ -26,19 +26,20 @@
       "epargne_nette_moyen": 86,
       "recette_gestion": 65,
       "produit_cessions_immobilisations": 138,
-      "recette_fonctionnement": 204
+      "recette_fonctionnement": 204,
+      "exer": 2023
     },
     "presentations_generales": {
       "population": 159346,
       "superficie": 40.4,
       "densite": 3944,
-      "frise_chronologique": [
-        "1966: Création du Syndicat intercommunal des services de l’agglomération dijonnaise (SISAD) avec 9 communes",
-        "1976: Création du District de Dijon avec 5 communes puis 13 en 1984",
-        "1999: Création de la Communauté de l’agglomération dijonnaise (COMADI) avec 16 communes, puis 21 en 2004",
-        "2015: Création de la Communauté urbaine du Grand Dijon",
-        "2017: Création de Dijon Métropole avec 23 communes"
-      ],
+      "frise_chronologique": {
+        "1966": "Création du Syndicat intercommunal des services de l’agglomération dijonnaise (SISAD) avec 9 communes",
+        "1976": "Création du District de Dijon avec 5 communes puis 13 en 1984",
+        "1999": "Création de la Communauté de l’agglomération dijonnaise (COMADI) avec 16 communes, puis 21 en 2004",
+        "2015": "Création de la Communauté urbaine du Grand Dijon",
+        "2017": "Création de Dijon Métropole avec 23 communes"
+      },
       "part-resid-princ": 90.4, 
       "part-resid-second": 2.9, 
       "part-log-vac": 6.7,
@@ -48,6 +49,20 @@
       "construction": 9.0,
       "commerce": 70.9,
       "administration": 13.9
+    },
+      "data_description": {
+        "population": "Population en 2021",
+        "densite": "Densité de la population (nombre d'habitants au km²) en 2021",
+        "superficie": "Superficie en 2021, en km²",
+        "part-resid-princ": "Part des résidences principales en 2021, en %",
+        "part-resid-second": "Part des résidences secondaires (y compris les logements occasionnels) en 2021, en %", 
+        "part-log-vac": "Part des logements vacants en 2021, en %",
+        "chomage": "Taux de chômage des 15 à 64 ans en 2021",
+        "agriculture": "Part de l'agriculture, en %",
+        "industrie": "Part de l'industrie, en %",
+        "construction": "Part de la construction, en %",
+        "commerce": "Part du commerce, transports et services divers, en %",
+        "administration": "Part de l'administration publique, enseignement, santé et action sociale, en %"
     },
     "projets_verts": {
       "Energies renouvelables": {

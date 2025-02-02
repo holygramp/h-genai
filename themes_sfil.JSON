@@ -1,0 +1,63 @@
+{
+    "projets_verts": {
+        "Energies renouvelables": {
+            "Solaire": {},
+            "Éolien": {},
+            "Hydraulique": {},
+            "Géothermie": {},
+            "Biomasse": {}
+        },
+        "Gestion durable de l’eau et de l’assainissement": {
+            "Service public de l’eau potable": {},
+            "Service public de l’assainissement": {},
+            "Gestion des eaux pluviales": {},
+            "GEMAPI (Gestion des Milieux Aquatiques et Prévention des Inondations)": {}
+        },
+        "Gestion et valorisation des déchets": {
+            "Collecte et tri des Déchets Ménagers et Assimilés (DMA)": {},
+            "Réemploi": {},
+            "Recyclage ou compostage": {},
+            "Valorisation énergétique": {}
+        },
+        "Mobilité douce et transports propres": {
+            "Véhicules électriques": {},
+            "Dispositifs de recharge": {},
+            "Pistes cyclables": {},
+            "Tramways": {},
+            "Bus électriques": {},
+            "Infrastructures ferroviaires": {},
+            "Pôles d’échanges multimodaux": {}
+        },
+        "Efficacité énergétique de la construction et de l’aménagement urbain": {
+            "Aménagement urbain (ex. modernisation de l’éclairage public)": {},
+            "Construction ou rénovation de bâtiments": {}
+        }
+    },
+    "projets_sociaux": {
+        "Service d’incendie et de secours": {
+            "Services Départementaux d’Incendie et de Secours (SDIS)": {}
+        },
+        "Action sanitaire, sociale et familiale": {
+            "Établissements sociaux et médico-sociaux (EHPAD, IME)": {},
+            "Établissements de la petite enfance (crèches)": {},
+            "Maisons de santé": {}
+        },
+        "Enseignement et formation professionnelle": {
+            "Établissements d’enseignement (écoles, collèges, lycées)": {},
+            "Établissements de formation professionnelle (CFA, IFSI)": {},
+            "Services annexes (restauration et ramassage scolaire)": {}
+        },
+        "Sport, culture et vie associative": {
+            "Espaces verts (parcs, jardins)": {},
+            "Équipements culturels (musées, patrimoine)": {},
+            "Équipements sportifs (gymnases, piscines)": {},
+            "Équipements de la vie associative locale (maisons des associations)": {}
+        },
+        "Développement et cohésion territoriale": {
+            "Renouvellement urbain des Quartiers Prioritaires de la Ville (QPV)": {},
+            "Opérations de Revitalisation de Territoire (ORT)": {},
+            "Subvention d’investissement au logement social": {},
+            "Déploiement du Très Haut Débit": {}
+        }
+    }
+}
