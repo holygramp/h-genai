@@ -1,0 +1,230 @@
+{
+    "Paris": {
+        "Paris_DOB": "https://cdn.paris.fr/presse/2024/11/18/ec63447348893534eb0a638d87e3fdc1.pdf",
+        "Paris_BP": "https://cdn.paris.fr/paris/2024/02/20/1-bp-2024-rapport-budget-vote-WxDD.pdf"
+    },
+    "Marseille": {
+        "Marseille_DOB": "https://credit-municipal-marseille.fr/app/uploads/2024/02/PVOSEXTRPV-2024_01_17-01-a-11.pdf",
+        "Marseille_BP": "https://www.marseille.fr/sites/default/files/contenu/mairie/Budget/pdf/rapport_de_presentation_budget_primitif_2024-c.pdf"
+    },
+    "Lyon": {
+        "Lyon_DOB": "https://www.lyon.fr/sites/lyonfr/files/content/documents/2024-02/21895_ROB%202024.pdf",
+        "Lyon_BP": "https://www.lyon.fr/sites/lyonfr/files/content/documents/2024-06/synthese_sur_le_budget_primitif_2024_0.pdf"
+    },
+    "Toulouse": {
+        "Toulouse_DOB": "https://metropole.toulouse.fr/sites/toulouse-fr/files/2024-12/20241205_ville_deliberation_24-0672.pdf",
+        "Toulouse_BP": "https://metropole.toulouse.fr/sites/toulouse-fr/files/2022-09/rapport_bp2021.pdf"
+    },
+    "Nice": {
+        "Nice_DOB": "https://www.nice.fr/uploads/media/default/0001/33/Fiche%20p%C3%A9dagogique%20ex%C3%A9cutoire%2015-07-24pdf.pdf",
+        "Nice_BP": "https://www.nice.fr/uploads/media/default/0001/33/Budget-2024-Pr%C3%A9sentation-br%C3%A8ve-et-synth%C3%A9tique-du-budget-primitif.pdf"
+    },
+    "Nantes": {
+        "Nantes_DOB": "https://metropole.nantes.fr/files/live/sites/metropolenantesfr/files/delib/deliberations/CCAS/2024/09-18/Documents/Diaporama%20DOB%20CHRS%20CHNR%202025.pdf",
+        "Nantes_BP": "https://metropole.nantes.fr/files/pdf/finances%20budget/Budget%202024/Budget%20NM/Rapport%20de%20pr%C3%A9sentation%20du%20BP%202024%20de%20NM.pdf"
+    },
+    "Montpellier": {
+        "Montpellier_DOB": "https://www.montpellier.fr/include/viewFile.php?idtf=47966&path=64%2F47966_879_DP-CM-6-Fevrier-2024.pdf",
+        "Montpellier_BP": "https://www.montpellier-agglo.fr/sites/default/files/rapport_bp2023_metropole_vf_140323.pdf"
+    },
+    "Strasbourg": {
+        "Strasbourg_DOB": "https://storage.creacast.com/strasbourg-vod/documents/20240209_EM_delib.pdf",
+        "Strasbourg_BP": "https://storage.creacast.com/strasbourg-vod/documents/20240318_CM_CR.pdf"
+    },
+    "Bordeaux": {
+        "Bordeaux_DOB": "https://www.bordeaux-metropole.fr/sites/MET-BXMETRO-DRUPAL/files/2024-10/CP%20-%20Nouvelles%20m%C3%A9thodes%20et%20nouveau%20calendrier%20budget%202025.pdf",
+        "Bordeaux_BP": "https://www.bordeaux-metropole.fr/sites/MET-BXMETRO-DRUPAL/files/2024-05/BP2024_tome%202_%20Budgets%20Annexes.pdf"
+    },
+    "Lille": {
+        "Lille_DOB": "https://pepite-depot.univ-lille.fr/LIBRE/EDSESAM/2022/2022ULILA014.pdf",
+        "Lille_BP": "https://www.scot-lille-metropole.org/wp-content/uploads/sites/2/2022/07/09-2021-Participation-des-membres-et-budget-primitif-2022.pdf"
+    },
+    "Rennes": {
+        "Rennes_DOB": null,
+        "Rennes_BP": "http://www.presse.metropole.rennes.fr/upload/espace/1/pj/31495_23702_CP_Budget_VF.pdf"
+    },
+    "Reims": {
+        "Reims_DOB": "https://www.reims.fr/fileadmin/reims/MEDIA/Presse/Communiques_en_PDF/2024-11-14_CP_CC.pdf",
+        "Reims_BP": "https://www.reims.fr/fileadmin/reims/MEDIA/08_La_ville_de_Reims/Vie_institutionnelle/Budget/budget_2024/rapport_du_18_decembre__bp_2024_ville_de_reims.pdf"
+    },
+    "Saint-Étienne": {
+        "Saint-Étienne_DOB": "https://www.saint-etienne-metropole.fr/sites/default/files/deliberations/000445B4.pdf",
+        "Saint-Étienne_BP": null
+    },
+    "Le Havre": {
+        "Le Havre_DOB": "https://www.verrieres-le-buisson.fr/wp-content/uploads/2024/02/2024-03_vv-249_bd-1.pdf",
+        "Le Havre_BP": "https://www.lehavreseinemetropole.fr/sites/default/files/media/downloads/rapport-annuel-dactivite-2022-le-havre-seine-metropole.pdf"
+    },
+    "Toulon": {
+        "Toulon_DOB": null,
+        "Toulon_BP": "https://toulon.fr/sites/new.toulon.fr/files/fichesynthetiquebp_2022.pdf"
+    },
+    "Grenoble": {
+        "Grenoble_DOB": "https://www.grenoble.fr/cms_viewFile.php?idtf=50845&path=Liste-des-deliberations-du-conseil-municipal-du-04-novembre-2024.pdf",
+        "Grenoble_BP": "https://www.grenoble.fr/cms_viewFile.php?idtf=51080&path=Budget-primitif-2025-Document-d-analyse.pdf"
+    },
+    "Dijon": {
+        "Dijon_DOB": "https://www.dijon-metropole.fr/wp-content/uploads/sites/25/2024/12/DEL_2024_31_DOB-2025.pdf",
+        "Dijon_BP": "https://www.dijon.fr/wp-content/uploads/sites/24/2023/12/ANNEXE-1-Rapport.pdf"
+    },
+    "Angers": {
+        "Angers_DOB": "https://www.angers.fr/fileadmin/user_upload/dob_2024_-_deliberation.pdf",
+        "Angers_BP": "https://www.angers.fr/fileadmin/user_upload/maquette_bp_2024_-_ville___boa_vd.pdf"
+    },
+    "Nîmes": {
+        "Nîmes_DOB": null,
+        "Nîmes_BP": "https://www.mairie-sernhac.com/wp-content/uploads/2015/12/ODJ-N%C3%AEmes-M%C3%A9tropole-7-dec-2015.pdf"
+    },
+    "Villeurbanne": {
+        "Villeurbanne_DOB": null,
+        "Villeurbanne_BP": "https://www.enm-villeurbanne.fr/cms/wp-content/uploads/2023/02/delib-2300-avec-dob.pdf"
+    },
+    "Le Mans": {
+        "Le Mans_DOB": "https://www.fontenay-le-comte.fr/images/publications/Mairie/Fontenay_ma_Ville_16.pdf",
+        "Le Mans_BP": "https://www.ccomptes.fr/sites/default/files/2023-10/ROD-2018-221-CNE-Le-Mans.pdf"
+    },
+    "Aix-en-Provence": {
+        "Aix-en-Provence_DOB": null,
+        "Aix-en-Provence_BP": "https://eadm.mairie-aixenprovence.fr/delibinternet/delib-14710-ILOT-GALICE--CONVENTION-DETUDES-DE-VARIANTES-AU-SCHEMA-DIRECTEUR-POUR-LOPERATION-DAMENAGEMENT-DE-LILOT-GALICE-A-AIX-EN-PROVENCE-ENTRE-LA-VILLE-DAIX-EN-PROVENCE-ET-LA-SPLA-PAYS-DAIX-TERRITOIRES-APPROBA.pdf"
+    },
+    "Brest": {
+        "Brest_DOB": null,
+        "Brest_BP": "https://brest.fr/sites/default/files/medias/brestfr/documents/brest_ville_et_metropole/ville/finances/Budget%20primitif%202024%20de%20la%20ville%20de%20Brest.pdf"
+    },
+    "Tours": {
+        "Tours_DOB": "https://www.tours.fr/app/uploads/2024/04/PV-conseil-du-19-fevrier-2024.pdf",
+        "Tours_BP": "https://www.tours.fr/app/uploads/2023/12/Rapport-de-presentation-BP-2024-Ville.pdf"
+    },
+    "Amiens": {
+        "Amiens_DOB": "https://www.amiens.fr/content/download/68383/1330228/file/2024_03_21+Proc%C3%A8s-verbal.pdf",
+        "Amiens_BP": "https://www.amiens.fr/content/download/66110/1283205/file/Note+BP+2024+ville+Amiens.pdf"
+    },
+    "Limoges": {
+        "Limoges_DOB": null,
+        "Limoges_BP": "https://www.limoges-metropole.fr/fileadmin/1-LIMOGES_METROPOLE/2-L_institution/9-Les_budgets/2023_Budget/BP_2023_PRESENTATION_SYNTHETIQUE_TOUS_BUDGETS_1.pdf"
+    },
+    "Annecy": {
+        "Annecy_DOB": "https://www.annecy.fr/fileadmin/mediatheque_annecy/Deliberations/2024/20240129/Deliberation-D.CN.2024-03.pdf",
+        "Annecy_BP": "https://www.annecy.fr/fileadmin/mediatheque_annecy/Ma_ville/Budget/D_CN_2024_42.pdf"
+    },
+    "Perpignan": {
+        "Perpignan_DOB": "https://www.mairie-perpignan.fr/sites/default/files/documents/compte-rendu-du-conseil-municipal-07022024-17h00.pdf",
+        "Perpignan_BP": "https://www.mairie-perpignan.fr/sites/default/files/users/user1443/rapport-bp-2024.pdf"
+    },
+    "Boulogne-Billancourt": {
+        "Boulogne-Billancourt_DOB": null,
+        "Boulogne-Billancourt_BP": "https://www.seineouest.fr/app/uploads/2022/06/Budget-primitif-Annexe-Boulogne-Billancourt.pdf"
+    },
+    "Besançon": {
+        "Besançon_DOB": null,
+        "Besançon_BP": null
+    },
+    "Metz": {
+        "Metz_DOB": "https://metz.fr/fichiers/2025/01/27/ODJ_CM_30_janvier.pdf",
+        "Metz_BP": "https://metz.fr/pages/conseil_municipal/seances/cm250130/doc/0_d1738067003457.pdf"
+    },
+    "Orléans": {
+        "Orléans_DOB": null,
+        "Orléans_BP": "https://www.loiret.fr/sites/loiret/files/media/administrative-acts/2025/01/20241219-Arr%C3%AAt%C3%A9%20Tarif%20Anjorrant%20Orl%C3%A9ans%202024.pdf"
+    },
+    "Saint-Denis": {
+        "Saint-Denis_DOB": null,
+        "Saint-Denis_BP": "http://www.saint-denis.fr/sites/default/files/content/documents/rcm-bp_2020-vsp_vu_conseil_v_finale.pdf"
+    },
+    "Argenteuil": {
+        "Argenteuil_DOB": null,
+        "Argenteuil_BP": "https://www.argenteuil.fr/sites/default/files/media/downloads/bp_2024_-_rapport.pdf"
+    },
+    "Rouen": {
+        "Rouen_DOB": "https://rouen.fr/sites/default/files/communique/dossier_de_presse_-_conseil_municipal_du_21_novembre_2024_-_rouen_-_une_gestion_responsable_face_a_des_decisions_injustes.pdf",
+        "Rouen_BP": "https://www.metropole-rouen-normandie.fr/sites/default/files/users/user25802/CPMRNConseilme%CC%81tropolitaindu18d%C3%A9cembre2023BudgetPrimitif2024Maintenirlecapdelatransitionsocial-%C3%A9cologique18122023.pdf"
+    },
+    "Montreuil": {
+        "Montreuil_DOB": "https://www.lagazettedescommunes.com/telechargements/2024/05/tribunal-administratif-montreuil.pdf",
+        "Montreuil_BP": "https://www.montreuil.fr/fileadmin/user_upload/02_Vie_citoyenne/03_Finances_et_marches_publics/01_Le_budget/09_Le_Budget_2023/presentation_budget_primitif_2023.pdf"
+    },
+    "Mulhouse": {
+        "Mulhouse_DOB": "https://www.mulhouse.fr/wp-content/uploads/2024/11/88_CDL_DOB-2025.pdf",
+        "Mulhouse_BP": "https://www.mulhouse.fr/wp-content/uploads/2024/01/Rapport_presentation_BP_2024.pdf"
+    },
+    "Caen": {
+        "Caen_DOB": "https://caen.fr/sites/default/files/2024-02/RAPPORT%20ROB%202024%20VILLE.pdf",
+        "Caen_BP": "https://caen.fr/sites/default/files/2023-02/VILLE-01-BP2023%20VOTE.pdf"
+    },
+    "Nancy": {
+        "Nancy_DOB": null,
+        "Nancy_BP": "https://www.nancy.fr/fileadmin/NAN/vie-municipale/Budget_de_la_ville/PDF/budget-primitif/2024-rapport-presentation-budget-primitif.pdf"
+    },
+    "Tourcoing": {
+        "Tourcoing_DOB": null,
+        "Tourcoing_BP": "https://www.tourcoing.fr/content/download/272617/4666066/file/Budget+Primitif+2022+Complet.pdf"
+    },
+    "Nanterre": {
+        "Nanterre_DOB": "https://www.nanterre.fr/fileadmin/mediatheque/Vie_citoyenne/Vie_municipale/budget_et_fiscalite/DEL2024-25-_Annexe_Rapport_BP_2024_mis_en_forme_2.pdf",
+        "Nanterre_BP": "https://www.nanterre.fr/fileadmin/mediatheque/Vie_citoyenne/Vie_municipale/budget_et_fiscalite/DEL2024-25-_Annexe_Rapport_BP_2024_mis_en_forme_2.pdf"
+    },
+    "Vitry-sur-Seine": {
+        "Vitry-sur-Seine_DOB": null,
+        "Vitry-sur-Seine_BP": null
+    },
+    "Nouméa": {
+        "Nouméa_DOB": null,
+        "Nouméa_BP": null
+    },
+    "Créteil": {
+        "Créteil_DOB": null,
+        "Créteil_BP": null
+    },
+    "Avignon": {
+        "Avignon_DOB": "https://www.avignon.fr/fileadmin/actualites/Documents/2024/12_Decembre/CM/N__5PJ.PDF",
+        "Avignon_BP": "https://www.avignon.fr/fileadmin/actualites/Documents/2025/01_Janvier/CM/2.pdf"
+    },
+    "Asnières-sur-Seine": {
+        "Asnières-sur-Seine_DOB": null,
+        "Asnières-sur-Seine_BP": null
+    },
+    "Colombes": {
+        "Colombes_DOB": "https://www.bois-colombes.fr/wp-content/uploads/2024/12/BAT-SORTIR-decembre_WEB.pdf",
+        "Colombes_BP": null
+    },
+    "Aubervilliers": {
+        "Aubervilliers_DOB": "https://www.aubervilliers.fr/IMG/pdf/rob_version_finale.pdf",
+        "Aubervilliers_BP": "https://www.aubervilliers.fr/IMG/pdf/maquette_ville_bp23_avec_annexes-2.pdf"
+    },
+    "Poitiers": {
+        "Poitiers_DOB": "https://www.poitiers.fr/sites/default/files/2024-02/20240212_deliberation_CM_03.pdf",
+        "Poitiers_BP": "https://www.poitiers.fr/sites/default/files/2022-06/VILLE_RAPPORT_BP_2022.pdf"
+    },
+    "Dunkerque": {
+        "Dunkerque_DOB": "https://www.communaute-urbaine-dunkerque.fr/fileadmin/Cud/documents/budget/documents/2023/Compte_financier_unique_2023__rapport_de_presentation.pdf",
+        "Dunkerque_BP": "https://www.ville-dunkerque.fr/fileadmin/user_upload/Actualites/2024/Budget_2024/Rapport_de_presentation_du_Budget_Primitif_2024.pdf"
+    },
+    "Aulnay-sous-Bois": {
+        "Aulnay-sous-Bois_DOB": null,
+        "Aulnay-sous-Bois_BP": "https://www.aulnay-sous-bois.fr/wp-content/uploads/2024/04/CM_03_04_24_CRS.pdf"
+    },
+    "Saint-Pierre": {
+        "Saint-Pierre_DOB": null,
+        "Saint-Pierre_BP": "https://www.ville-de-saint-pierre-les-elbeuf.fr/wp-content/uploads/2024/01/2023-12-84-annexe1.pdf"
+    },
+    "Versailles": {
+        "Versailles_DOB": "https://www.versailles.fr/fileadmin/www.versailles.fr/MEDIA/Mairie/Conseil_Municipal/Ordres_du_jour-comptes-rendus-proces_verbaux/2024/CR_sommaire_-_CM_14_nov_2024.pdf",
+        "Versailles_BP": "https://www.versailles.fr/fileadmin/www.versailles.fr/MEDIA/Mairie/Budget/2025/pdf/Le_rapport_du_budget_primitif_2025.pdf"
+    },
+    "Le Tampon": {
+        "Le Tampon_DOB": "https://www.castelnau-le-lez.fr/app/uploads/2024/10/5-ROB-tampon.pdf",
+        "Le Tampon_BP": "https://delib.mairie-tampon.fr/download/2023-12-16%20-%2002%20-%20Autorisation%20d'engager,%20liquider%20et%20mandater%20les%20d%C3%A9penses%20d'investissement%20avant%20le%20vote%20du%20budget%20primitif%202024/2%20-%20autorisation%20engager%20depenses%20investissement-tampon.pdf"
+    },
+    "Courbevoie": {
+        "Courbevoie_DOB": "https://www.ville-courbevoie.fr/Statics/Votre_mairie/Conseil_municipal/Budget/budget_2024/Rapport_BP_2024_VILLE_CANTINE.pdf",
+        "Courbevoie_BP": "https://www.ville-courbevoie.fr/Statics/Votre_mairie/Conseil_municipal/Budget/budget_2024/Rapport_BP_2024_VILLE_CANTINE.pdf"
+    },
+    "Rueil-Malmaison": {
+        "Rueil-Malmaison_DOB": null,
+        "Rueil-Malmaison_BP": null
+    },
+    "Béziers": {
+        "Béziers_DOB": null,
+        "Béziers_BP": null
+    }
+}
