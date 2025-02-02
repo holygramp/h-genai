@@ -6,7 +6,7 @@ L'application permet de générer une fiche complète et standardisée sur une a
 
 
 
-## Description
+## Front-End
 
 **AutoSfill** permet de générer automatiquement des fiches clients détaillées à partir des informations publiques disponibles sur Internet. 
 
@@ -68,4 +68,5 @@ Ces scripts avaient pour seul but de prouver la faisabilité de notre approche d
 ### Traitement des données
 La partie traitement des données repose principalement sur la structuration de toutes les données récupérées dans nos fiches en passant également par l'utilisation de Claude. Nous utilisons un système RAG sur une base de données composée de documents soigneusement récupérés par nos scrapers, ce qui nous permet de remplir les champs les plus complexes de notre fiche client.
 
-
+Architecture:
+![Image locale](architecture.jpg)
