@@ -9,6 +9,10 @@ from datetime import datetime
 import json
 import matplotlib.pyplot as plt
 from streamlit_echarts import st_echarts
+import plotly.express as px
+import altair as alt
+import requests
+
 
 # Main function
 def main():
@@ -63,6 +67,33 @@ def main():
             # Affichage du spinner et attente de la création du fichier
             with st.spinner("⏳"):
                 start_time = time.time()  # Début du compteur
+                lambda_url = "https://caolsvkubnf7gcdpcpa5xktz5y0psruh.lambda-url.us-west-2.on.aws/"
+                # Envoie des informations à la Lambda
+                # Fonction pour enregistrer la réponse dans un fichier JSON
+                def enregistrer_reponse_json(response_data, filename="reponse_lambda.json"):
+                    try:
+                        # Enregistre le JSON dans un fichier local
+                        with open(filename, 'w') as f:
+                            json.dump(response_data, f, indent=4)
+                        st.success(f"Réponse enregistrée dans {filename}")
+                    except Exception as e:
+                        st.error(f"Erreur lors de l'enregistrement du fichier: {str(e)}")
+
+                def envoyer_a_lambda(data):
+                    headers = {'Content-Type': 'application/json'}
+                    try:
+                        response = requests.get(lambda_url, headers=headers, data=json.dumps(data))
+                        # Vérifie si la requête a réussi
+                        if response.status_code == 200:
+                            response_data = response.json()  # On récupère la réponse au format JSON
+                            enregistrer_reponse_json(response_data, filename=f"{selected_city}.json")
+                        else:
+                            st.error(f"Erreur: {response.status_code}, {response.text}")
+                    except Exception as e:
+                        st.error(f"Erreur lors de l'envoi de la requête: {str(e)}")
+
+                envoyer_a_lambda({'city': f"{selected_city}"})
+
                 #IMPORTANT: Appeler les fonctions des gars pour que ça cree le fichier ville_demandee.json
                 #
                 #
@@ -93,7 +124,9 @@ def main():
                 with open(file_name, "r") as f:
                     data = json.load(f)  # Charger le contenu du fichier
                 
-                # Infos au début
+
+
+                # INFOS INITIALES
                 date_du_jour = datetime.today().strftime("%d/%m/%Y")
                 st.markdown(f"""
                 - Classification document: [C0] Tout public
@@ -108,7 +141,9 @@ def main():
 
 
 
-                #Indicateurs financiers
+
+
+                #VISION RÉCAPITULATIVE
                 st.markdown("<h3 style='color:"+verdigris+";'>Vision récapitulative</h3>", unsafe_allow_html=True)
                 # Ajout d'un lien pour la source des données
                 st.markdown(
@@ -129,7 +164,11 @@ def main():
 
 
 
-                #1. Présentation générale
+
+
+
+
+                #1. PRESENTATION GENERALE
                 st.markdown("<h3 style='color:"+verdigris+";'>1. Présentation générale</h3>", unsafe_allow_html=True)
                 # Ajout d'un lien pour la source des données
                 epci_code = data["inter"]["num_epci"]
@@ -149,11 +188,6 @@ def main():
                 df = pd.DataFrame(data_rows, columns=["Description", "Valeur"])
                 # Afficher le tableau avec Streamlit
                 st.dataframe(df, hide_index=True)
-
-
-
-
-
 
                 # 1. Répartition par type de logement
                 labels_logements = ['Résidences principales', 'Résidences secondaires', 'Logements vacants']
@@ -175,7 +209,7 @@ def main():
                 # Options pour le graphique circulaire des types de logement
                 option_logements = {
                     "title": {
-                        "text": "Répartition par type de logement",
+                        "text": "💡Répartition par type de logement",
                         "left": "center"
                     },
                     "tooltip": {
@@ -213,7 +247,7 @@ def main():
                 # Options pour le graphique circulaire des secteurs
                 option_secteurs = {
                     "title": {
-                        "text": "Répartition par secteur",
+                        "text": "💡Répartition par secteur d'activité",
                         "left": "center"
                     },
                     "tooltip": {
@@ -265,14 +299,248 @@ def main():
                 st_echarts(options=option_logements, height="400px")
                 st_echarts(options=option_secteurs, height="400px")
 
+                #Frise chronologique
+                st.write("**Historique de la collectivité (réorganisations territoriales):**")
+                frise_chronologique = data["presentations_generales"]["frise_chronologique"]
+                df_frise = pd.DataFrame(frise_chronologique.items(), columns=['Année', 'Événement'])
+                st.dataframe(df_frise, hide_index=True)
 
 
-                    
+
+
+
+
+
+
+                # 2. PROJETS VERTS
+                st.markdown("<h3 style='color:"+verdigris+";'>2. Projets verts</h3>", unsafe_allow_html=True)
+                st.markdown("<h4 style='color:"+gray+";'>2.1. Explications</h4>", unsafe_allow_html=True)
+
+                def colorer_score(val):
+                    couleurs = {"A": "#278D30", "B": "#62AD4E", "C": "#EBDE37"}
+                    return f"background-color: {couleurs.get(val, 'white')}; color: white"
+
+                #Source: budget primitif
+                # Ouvrir et lire le fichier JSON
+                with open("directories.json", "r") as dir:
+                    data_url = json.load(dir)  # Charger le contenu du fichier
                 
+                lien_BP = data_url[f"{selected_city}"][f"{selected_city}"+"_BP"]
+                st.markdown(
+                    f"<p style='color:{gray};'><a href='{lien_BP}' target='_blank' style='color:{gray};'> 🔗 Consultez le Budget primitif ici</a></p>", 
+                    unsafe_allow_html=True
+                )
+
+                lien_DOB = data_url[f"{selected_city}"][f"{selected_city}"+"_DOB"]
+                st.markdown(
+                    f"<p style='color:{gray};'><a href='{lien_DOB}' target='_blank' style='color:{gray};'> 🔗 Consultez le Débat d'Orientation Budgétaire ici</a></p>", 
+                    unsafe_allow_html=True
+                )
+
+                st.write("""Dans cette partie, nous présentons les projets prévus ou discutés. 
+                            L'objectif est d'identifier les dépenses d’investissements éligibles.
+
+    On évalue la probabilité que le projet se réalise avec un score:
+        - A: sûr.
+        - B: probable.
+        - C: probable mais ne dépend pas du budget de la collectivité.
+                        
+    Les projets sont triés par:
+        1. Thème (Energies renouvelables, etc.)
+        2. Catégorie (Solaire, Eolien, etc.);
+        3. Probabilité de réalisation ("projet" est une action prévue et budgettée; "tendance" est une action trouvée dans d'autres sources);
+        4. Est-ce que l'action relève de la compétence de cette collectivité?""")
+                st.image("user_interface/explication_projet.jpg")
+                # Ajout d'un lien pour la source des données
+                # Fonction pour convertir les projets verts en tableau structuré avec score
+                def convertir_en_dataframe(data):
+                    rows = []
+                    # Itération sur les thèmes
+                    for theme, categories in data['projets_verts'].items():
+                        # Itération sur les catégories de chaque thème
+                        for categorie, projets in categories.items():
+                            # Si des projets existent pour cette catégorie
+                            if projets:
+                                for projet, infos in projets.items():
+                                    score = " "
+                                    if infos.get('type') == "projet":
+                                        score = "A"
+                                    elif infos.get('type') == "tendance":
+                                        competence = infos.get('competence', 'non')
+                                        score = "B" if competence == "oui" else "C"
+                                    
+                                    row = {
+                                        'Thème': theme,
+                                        'Catégorie': categorie,
+                                        'Projet': projet,
+                                        'Type': infos.get('type', 'Non défini'),
+                                        'Échéance': infos.get('echeance', 'Non définie'),
+                                        'Montant': infos.get('montant', 'Non défini'),
+                                        'Compétence': infos.get('competence', 'Non définie'),
+                                        'Score': score
+                                    }
+                                    rows.append(row)
+                            else:
+                                row = {
+                                    'Thème': theme,
+                                    'Catégorie': categorie,
+                                    'Projet': 'Aucun projet identifié',
+                                    'Type': ' ',
+                                    'Échéance': ' ',
+                                    'Montant': ' ',
+                                    'Compétence': ' ',
+                                    'Score': ' '
+                                }
+                                rows.append(row)
+                    return pd.DataFrame(rows)
+
+                # Convertir les données en dataframe
+                df_projets = convertir_en_dataframe(data)
+
+                # Afficher le tableau avec tous les projets verts
+                st.markdown("<h4 style='color:"+gray+";'>2.2. Tableau</h4>", unsafe_allow_html=True)
+                st.dataframe(df_projets.style.applymap(colorer_score, subset=["Score"]), hide_index=True)
 
 
 
-    
+
+
+
+
+                
+                # 3. PROJETS SOCIAUX
+                st.markdown("<h3 style='color:"+verdigris+";'>3. Projets sociaux</h3>", unsafe_allow_html=True)
+                st.write("""On fait de même pour les projets sociaux.""")
+                st.markdown(
+                    f"<p style='color:{gray};'><a href='{lien_BP}' target='_blank' style='color:{gray};'> 🔗 Consultez le Budget primitif ici</a></p>", 
+                    unsafe_allow_html=True
+                )
+                st.markdown(
+                    f"<p style='color:{gray};'><a href='{lien_DOB}' target='_blank' style='color:{gray};'> 🔗 Consultez le Débat d'Orientation Budgétaire ici</a></p>", 
+                    unsafe_allow_html=True
+                )
+
+                # Fonction pour convertir les projets verts en tableau structuré avec score
+                def convertir_en_dataframe_2(data):
+                    rows = []
+                    # Itération sur les thèmes
+                    for theme, categories in data['projets_sociaux'].items():
+                        # Itération sur les catégories de chaque thème
+                        for categorie, projets in categories.items():
+                            # Si des projets existent pour cette catégorie
+                            if projets:
+                                for projet, infos in projets.items():
+                                    score = " "
+                                    if infos.get('type') == "projet":
+                                        score = "A"
+                                    elif infos.get('type') == "tendance":
+                                        competence = infos.get('competence', 'non')
+                                        score = "B" if competence == "oui" else "C"
+                                    
+                                    row = {
+                                        'Thème': theme,
+                                        'Catégorie': categorie,
+                                        'Projet': projet,
+                                        'Type': infos.get('type', 'Non défini'),
+                                        'Échéance': infos.get('echeance', 'Non définie'),
+                                        'Montant': infos.get('montant', 'Non défini'),
+                                        'Compétence': infos.get('competence', 'Non définie'),
+                                        'Score': score
+                                    }
+                                    rows.append(row)
+                            else:
+                                row = {
+                                    'Thème': theme,
+                                    'Catégorie': categorie,
+                                    'Projet': 'Aucun projet identifié',
+                                    'Type': ' ',
+                                    'Échéance': ' ',
+                                    'Montant': ' ',
+                                    'Compétence': ' ',
+                                    'Score': ' '
+                                }
+                                rows.append(row)
+                    return pd.DataFrame(rows)
+
+                # Convertir les données en dataframe
+                df_projets = convertir_en_dataframe_2(data)
+
+                # Afficher le tableau avec tous les projets sociaux
+                st.dataframe(df_projets.style.applymap(colorer_score, subset=["Score"]), hide_index=True)
+
+
+
+
+
+
+
+               # 4. INTERLOCUTEURS
+                st.markdown("<h3 style='color:"+verdigris+";'>4. Interlocuteurs</h3>", unsafe_allow_html=True)
+
+
+
+
+
+
+
+
+               # 5. SITUATION FINANCIÈRE
+                st.markdown("<h3 style='color:"+verdigris+";'>5. Analyse financière</h3>", unsafe_allow_html=True)
+                # 5.1. 
+                st.markdown("<h4 style='color:"+gray+";'>5.1. Budget primitif</h4>", unsafe_allow_html=True)
+                st.write("**Tableau de présentation générale du budget**: Si cela vous intéresse de l'ajouter à la fiche, nous vous invitons à aller chercher le tableau sur ce lien:")
+                st.markdown(
+                        f"<p style='color:{gray};'><a href='{lien_BP}' target='_blank' style='color:{gray};'> 🔗 Lien du budget primitif</a></p>", 
+                        unsafe_allow_html=True
+                    )
+                uploaded_files = st.file_uploader(
+                    "Prenez une capture d'écran du tableau et déposez-la ci-dessous.",
+                    accept_multiple_files=True
+                )
+
+                st.write("")
+                exercice = str(data["indicateurs_financiers"]["exer"])
+                st.write("**Tableau de flux financiers en "+exercice+"**:")
+
+                st.markdown(
+                    f"<p style='color:{gray};'><a href=' https://www.data.gouv.fr/fr/datasets/comptes-des-communes-2016-2023/#/resources/7701d6a6-97e4-4938-9c38-a852cb14cfba' target='_blank' style='color:{gray};'> 🔗 Source data.gouv.fr</a></p>", 
+                    unsafe_allow_html=True
+                )
+                # Tableau
+                data_finance = {
+                    ' ': ['Fonctionnement (M€)', 'Investissement (M€)'],
+                    'Dépenses': [f"{data['indicateurs_financiers']['depense_fonctionnement']}", f"{data['indicateurs_financiers']['depense_investissement']}"],
+                    'Recettes': [f"{data['indicateurs_financiers']['recette_fonctionnement']}", f"{data['indicateurs_financiers']['recette_investissement']}"]
+                }
+                df = pd.DataFrame(data_finance)
+                # Afficher le tableau 
+                st.dataframe(df, hide_index=True)           
+
+
+
+            # 5.2. Indicateurs de risques financiers
+                st.markdown("<h4 style='color:"+gray+";'>5.2. Indicateurs de risques financiers</h4>", unsafe_allow_html=True)
+
+                st.markdown(
+                    f"<p style='color:{gray};'><a href=' https://www.data.gouv.fr/fr/datasets/comptes-des-communes-2016-2023/#/resources/7701d6a6-97e4-4938-9c38-a852cb14cfba' target='_blank' style='color:{gray};'> 🔗 Source data.gouv.fr</a></p>", 
+                    unsafe_allow_html=True
+                )
+                # Tableau
+                data_risques = {
+                    ' ': ['Épargne de gestion (en €/hab)', 'Épargne brute (en €/hab)', 'Épargne nette (en €/hab)'],
+                    f"{selected_city}": [f"{data['indicateurs_financiers']['epargne_gestion']}", f"{data['indicateurs_financiers']['epargne_brute']}",f"{data['indicateurs_financiers']['epargne_nette']}" ],
+                    'Moyenne nationale': ['215', '193', '86']
+                }
+                df = pd.DataFrame(data_risques)
+                # Afficher le tableau 
+                st.dataframe(df, hide_index=True) 
+
+
+
+
+
+
+
 
 
 
@@ -287,22 +555,6 @@ def main():
     st.write("")
     st.write("")
     st.write("")
-
-
-    #Pour ajouter des documents (si jamais)
-    st.markdown("<h3 style='color:"+gray+";'>Option: téléverser des documents</h3>", unsafe_allow_html=True)
-    uploaded_files = st.file_uploader(
-        "Choisissez les documents à téléverser.",
-        accept_multiple_files=True
-    )
-
-    df = pd.read_csv("h-genai/villes_sites.csv")
-    path_list = []
-    co2_eq_list = []
-    # Bouton pour lancer l'opération
-    if st.button("LAUNCH"):
-        print ("ok")
-
 
 # Run the application
 if __name__ == "__main__":
