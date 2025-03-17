@@ -1,6 +1,6 @@
 # AutoSfill
 
-**AutoSfill** est un outil qui automatise la création de fiches clients pour Sfil. Ces fiches sont basées sur des données publiques collectées sur Internet, par Google dork, scrapping et API, sur des sources fiables de données (cf. architecture). 
+**AutoSfill** est un outil qui automatise la création de fiches clients. Ces fiches sont basées sur des données publiques collectées sur Internet, par Google dork, scrapping et API, sur des sources fiables de données (cf. architecture). 
 
 L'application permet de générer une fiche complète et standardisée sur une application Streamlit pour chaque commune et intercommunalité de plus de 80.000 habitants, offrant un aperçu de la situation financière, des projets en cours, et des interlocuteurs privilégiés de cette collectivité.
 
@@ -12,7 +12,7 @@ L'application permet de générer une fiche complète et standardisée sur une a
 
 Les utilisateurs peuvent sélectionner une commune et obtenir une fiche client générée automatiquement.
 
-La fiche comprend une présentation générale, une analyse financière, des informations sur les interlocuteurs privilégiés et  des détails sur les projets à venir dans 2 thématiques: projets verts et projets sociaux.
+La fiche comprend une présentation générale (INSEE), une analyse financière (OFGL), des informations sur les interlocuteurs privilégiés (Banatic + Linkedin) et  des détails sur les projets à venir (DOB et ROB) dans 2 thématiques: projets verts et projets sociaux.
 
 
 
@@ -26,12 +26,12 @@ La fiche comprend une présentation générale, une analyse financière, des inf
 
 3. **Affichage dynamique des informations de la fiche** :  
    Après la génération de la fiche, l'application affiche plusieurs informations clés :  
-   0. Informations générales (code postal, intercommunalité, date de mise à jour, etc.) et un tableau récapitulatif des indicateurs financiers (budget, endettement, etc.).
-   1. Présentation générale: des données démographiques et socio-économiques sur la collectivité (population, superficie, chômage, etc.).
-   2. Détails sur les projets verts.
-   3. Détails sur les projets sociaux.
-   4. CV des interlocuteurs privilégiés (par défaut, le Maire).
-   5. Une analyse financière (budget primitif, flux financiers, risques).
+   0. Informations générales (code postal, intercommunalité, date de mise à jour, etc.) [INSEE] et un tableau récapitulatif des indicateurs financiers (budget, endettement, etc.) [OFGL]. 
+   1. Présentation générale: des données démographiques et socio-économiques sur la collectivité (population, superficie, chômage, etc).[INSEE]
+   2. Détails sur les projets verts. [DOB et ROB]
+   3. Détails sur les projets sociaux.[DOB et ROB]
+   4. CV des interlocuteurs privilégiés (par défaut, le Maire). [Linkedin]
+   5. Une analyse financière (budget primitif, flux financiers, risques). [OFGL]
 
 
 ## Installation
@@ -57,16 +57,16 @@ Assurez-vous que ces fichiers soient présents dans le répertoire ./ avec les b
 
 ## Backend
 ### Récupération des données
-La partie récupération des données est assurée par un grand nombre de scripts de webscraping, en la combinant souvent avec du Google Dorking afin de préciser nos recherches au maximum et diminuer la variabilité des données récoltées. La plupart du temps nous n'utilisons pas d'IA générative mis à part pour un cas exceptionnel où Mistral a permis de structurer nos données récupérées sur LinkedIn.
+La partie récupération des données est assurée par un grand nombre de scripts de webscraping et de call API, en la combinant souvent avec du Google Dorking afin de préciser nos recherches au maximum et diminuer la variabilité des données récoltées. La plupart du temps nous n'utilisons pas d'IA générative mis à part pour un cas exceptionnel où Mistral a permis de structurer nos données récupérées sur LinkedIn.
 
 #### Utilisation
 La récupération des données est soumise à de nombreux contrôles et contraintes sur le web, obligeant ces scripts à être bien souvent assistés par un humain en arrière plan pour les besoins de résolution de Captcha, de connexion...
 
 #### Pour la suite
-Ces scripts avaient pour seul but de prouver la faisabilité de notre approche dans le cadre de ce hackathon, oubliant parfois certains bons principes de code. Dans une optique de scalabilité, nous aimerions plus tard interragir avec les APIs payantes que nous avons pour le moment évité par soucis de moyens. Toutes les fonctions sont normalement un minimum documentées, afin d'en faciliter la reprise.
+Ces scripts avaient pour seul but de prouver la faisabilité de notre approche dans le cadre de ce hackathon, oubliant parfois certains bons principes de code. Dans une optique de scalabilité, nous aimerions plus tard interragir avec les APIs payantes que nous avons pour le moment évité par soucis de ressources. Toutes les fonctions sont normalement un minimum documentées, afin d'en faciliter la reprise.
 
 ### Traitement des données
 La partie traitement des données repose principalement sur la structuration de toutes les données récupérées dans nos fiches en passant également par l'utilisation de Claude. Nous utilisons un système RAG sur une base de données composée de documents soigneusement récupérés par nos scrapers, ce qui nous permet de remplir les champs les plus complexes de notre fiche client.
 
 Architecture:
-![Image locale architecture](architecture.jpeg)
+![Image locale architecture](Architecture_AutoSfill.jpg)
